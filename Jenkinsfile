@@ -16,10 +16,10 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh '
+                sh '''
                 maven clean compile
                 maven test
-                '
+                '''
             }
         }
     }
