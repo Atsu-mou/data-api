@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     tools {
         maven '3.8.6'
         jdk 'jdk8'
@@ -8,10 +9,6 @@ pipeline {
         stage ('Initialize') {
             steps {
                 sh '''
-
-                    export JAVA_HOME="/opt/java/openjdk"
-
-                    export PATH=$JAVA_HOME/bin:$PATH
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                     echo "JAVA_HOME = ${JAVA_HOME}"
@@ -25,6 +22,7 @@ pipeline {
                 sh '''
                     export PATH=$JAVA_HOME/bin:$PATH
                     export JAVA_HOME="/opt/java/openjdk"
+                    mvn clean compile
                     mvn test
                 '''
             }
