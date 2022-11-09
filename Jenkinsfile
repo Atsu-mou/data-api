@@ -16,7 +16,10 @@ pipeline {
 
         stage ('Build') {
             steps {
-                echo 'This is a minimal pipeline.'
+                echo '#!/bin/bash
+                maven clean compile
+                maven test
+                '
             }
         }
     }
