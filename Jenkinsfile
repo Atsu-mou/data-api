@@ -1,17 +1,22 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.1-adoptopenjdk-11'
-            args '-v /root/.m2:/root/.m2'
-        }
+    agent any
+    tools {
+        maven 'Maven 3.8.6'
+        jdk 'jdk8'
     }
     stages {
-        stage('Build') {
+        stage ('Initialize') {
             steps {
-                sh '''#! /bin/bash
-                mvn clean test
-                mvn -B -DskipTests clean package
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
                 '''
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                echo 'This is a minimal pipeline.'
             }
         }
     }
